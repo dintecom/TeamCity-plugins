@@ -4,18 +4,21 @@
   <parent>
     <artifactId>TriggeredByParameter</artifactId>
     <groupId>com.minodudd</groupId>
-    <version>1.0</version>
+    <version>1.2</version>
   </parent>
   <artifactId>build</artifactId>
   <packaging>pom</packaging>
   <properties>
-      <maven.build.timestamp.format>yyyyddMMHHmmss</maven.build.timestamp.format>
+      <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+      <teamcity.TriggeredByParameter.plugin.version>snapshot-${maven.build.timestamp}</teamcity.TriggeredByParameter.plugin.version>
+      <teamcity.TriggeredByParameter.plugin.vendorName>Plugin vendor name</teamcity.TriggeredByParameter.plugin.vendorName>
+      <teamcity.TriggeredByParameter.plugin.vendorUrl>Plugin vendor URL</teamcity.TriggeredByParameter.plugin.vendorUrl>
   </properties>
   <dependencies>
       <dependency>
            <groupId>com.minodudd</groupId>
            <artifactId>TriggeredByParameter-server</artifactId>
-           <version>1.0</version>
+           <version>1.2</version>
       </dependency>
   </dependencies>
   <build>
@@ -38,7 +41,15 @@
                 <replacements>
                     <replacement>
                         <token>@Version@</token>
-                        <value>snapshot-${maven.build.timestamp}</value>
+                        <value>${teamcity.TriggeredByParameter.plugin.version}</value>
+                    </replacement>
+                    <replacement>
+                        <token>@VendorName@</token>
+                        <value>${teamcity.TriggeredByParameter.plugin.vendorName}</value>
+                    </replacement>
+                    <replacement>
+                        <token>@VendorURL@</token>
+                        <value>${teamcity.TriggeredByParameter.plugin.vendorUrl}</value>
                     </replacement>
                 </replacements>                        
             </configuration>

@@ -33,7 +33,7 @@ public class TriggeredByParameterPropertiesProvider extends AbstractBuildParamet
         Map<String, String> newParams = new HashMap<String, String>();
 
         // get triggeredBy
-        String triggeredBy = build.getTriggeredBy().toString();
+        String triggeredBy = build.getTriggeredBy().getAsString();
 
         // get triggeredByUser
         String triggeredByUser = null;
@@ -44,13 +44,12 @@ public class TriggeredByParameterPropertiesProvider extends AbstractBuildParamet
             triggeredByUser = "n/a";
         }
 
-        LOG.debug("build.triggeredBy: "+triggeredBy);
-        LOG.debug("build.triggeredBy.username: "+triggeredByUser);
+        LOG.debug("build.triggeredBy: " + triggeredBy);
+        LOG.debug("build.triggeredBy.username: " + triggeredByUser);
 
         // return the parameters
         newParams.put("build.triggeredBy", triggeredBy);
         newParams.put("build.triggeredBy.username", triggeredByUser);
         return newParams;
     }
-
 }
