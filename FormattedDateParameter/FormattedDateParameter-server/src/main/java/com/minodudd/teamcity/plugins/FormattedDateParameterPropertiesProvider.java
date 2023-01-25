@@ -48,27 +48,24 @@ public class FormattedDateParameterPropertiesProvider extends AbstractBuildParam
             timestampFormat = "yyyy-MM-dd'T'HH:mmZ";
         }
 
-        LOG.debug("Timestamp format actually used: "+timestampFormat);
+        LOG.debug("Timestamp format actually used: " + timestampFormat);
 
         // get the start date
-	    Date buildStartDate;
-	    try{
-		    buildStartDate = build.getStartDate();
-	    } catch (Throwable ex){
-		    // if getStartDate() failed, fall back to the current time, should be close enough anyway.
-		    buildStartDate = new Date();
-	    }
+        Date buildStartDate;
+        try{
+            buildStartDate = build.getStartDate();
+        } catch (Throwable ex){
+            // if getStartDate() failed, fall back to the current time, should be close enough anyway.
+            buildStartDate = new Date();
+        }
 
         // format it
         String formattedTimestamp = (new SimpleDateFormat(timestampFormat)).format(buildStartDate);
 
-        LOG.debug("Formatted timestamp: "+timestampFormat);
+        LOG.debug("Formatted timestamp: " + timestampFormat);
 
         // return the formatted timestamp
         newParams.put("build.formatted.timestamp", formattedTimestamp);
         return newParams;
-
-
     }
-
 }

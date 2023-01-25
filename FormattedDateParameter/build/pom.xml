@@ -4,18 +4,21 @@
   <parent>
     <artifactId>FormattedDateParameter</artifactId>
     <groupId>com.minodudd</groupId>
-    <version>1.0</version>
+    <version>1.2</version>
   </parent>
   <artifactId>build</artifactId>
   <packaging>pom</packaging>
   <properties>
-      <maven.build.timestamp.format>yyyyddMMHHmmss</maven.build.timestamp.format>
+      <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+      <teamcity.FormattedDateParameter.plugin.version>snapshot-${maven.build.timestamp}</teamcity.FormattedDateParameter.plugin.version>
+      <teamcity.FormattedDateParameter.plugin.vendorName>Plugin vendor name</teamcity.FormattedDateParameter.plugin.vendorName>
+      <teamcity.FormattedDateParameter.plugin.vendorUrl>Plugin vendor URL</teamcity.FormattedDateParameter.plugin.vendorUrl>
   </properties>
   <dependencies>
       <dependency>
            <groupId>com.minodudd</groupId>
            <artifactId>FormattedDateParameter-server</artifactId>
-           <version>1.1</version>
+           <version>1.2</version>
       </dependency>
   </dependencies>
   <build>
@@ -38,7 +41,15 @@
                 <replacements>
                     <replacement>
                         <token>@Version@</token>
-                        <value>snapshot-${maven.build.timestamp}</value>
+                        <value>${teamcity.FormattedDateParameter.plugin.version}</value>
+                    </replacement>
+                    <replacement>
+                        <token>@VendorName@</token>
+                        <value>${teamcity.FormattedDateParameter.plugin.vendorName}</value>
+                    </replacement>
+                    <replacement>
+                        <token>@VendorURL@</token>
+                        <value>${teamcity.FormattedDateParameter.plugin.vendorUrl}</value>
                     </replacement>
                 </replacements>                        
             </configuration>

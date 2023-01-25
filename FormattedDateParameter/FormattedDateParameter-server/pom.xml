@@ -4,7 +4,7 @@
   <parent>
     <artifactId>FormattedDateParameter</artifactId>
     <groupId>com.minodudd</groupId>
-    <version>1.1</version>
+    <version>1.2</version>
   </parent>
   <artifactId>FormattedDateParameter-server</artifactId>
   <packaging>jar</packaging>
@@ -18,9 +18,10 @@
     </dependency>
 
     <dependency>
-      <groupId>com.intellij</groupId>
-      <artifactId>openapi</artifactId>
-      <version>7.0.3</version>
+      <groupId>org.jetbrains.teamcity</groupId>
+      <artifactId>server-web-api</artifactId>
+      <version>${teamcity-version}</version>
+      <type>war</type>
       <scope>provided</scope>
     </dependency>
 
@@ -30,6 +31,18 @@
       <version>${teamcity-version}</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
